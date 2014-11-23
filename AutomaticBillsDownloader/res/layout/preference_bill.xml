@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/select_bill_type" />
+    
+    <Spinner
+        android:id="@+id/bill_type_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/username" />
+
+    <EditText
+        android:id="@+id/username_edit_text_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" android:hint="@string/enter_username">
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/password" />
+
+    <EditText
+        android:id="@+id/password_edit_text_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" android:hint="@string/enter_password"
+        android:inputType="textPassword"/>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dropbox_folder" />
+    
+    <Spinner
+        android:id="@+id/dropbox_folder_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/delete_bill_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_bill" />
+
+</LinearLayout>

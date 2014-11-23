@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="@string/preferences" >
+
+    <PreferenceCategory android:title="Settings" >
+        <Preference
+            android:icon="@drawable/dropbox_icon"
+            android:key="dropboxAccountPreference"
+            android:title="@string/set_dropbox_account" />
+
+        <jabs.automaticbillsdownloader.preferences.TimePreference
+            android:defaultValue="08:00"
+            android:icon="@drawable/clock_icon"
+            android:key="scheduledTimePreference"
+            android:title="Daily Scheduled Time" />
+
+        <Preference
+            android:icon="@drawable/download_icon"
+            android:key="downloadNowPreference"
+            android:title="Download Bills Now" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory 
+        android:key="billPreferenceCategory"
+        android:title="Bills">
+    </PreferenceCategory>
+
+</PreferenceScreen>

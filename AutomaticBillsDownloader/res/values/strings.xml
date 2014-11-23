@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AutomaticBillsDownloader</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="connectToDropbox">Connect To Dropbox</string>
+    <string name="downloadBillsNow">Download Bills Now</string>
+    <string name="scheduleDaily">Schedule Daily</string>
+    <string name="account_name">Account Name</string>
+    <string name="loading_text">Loading . . .</string>
+    <string name="preferences"></string>
+    <string name="set_dropbox_account">Set Dropbox Account</string>
+    <string name="select_bill_type">Select Bill Type</string>
+    <string name="username">Username</string>
+    <string name="enter_username">Enter username</string>
+    <string name="password">Password</string>
+    <string name="enter_password">Enter password</string>
+    <string name="dropbox_folder">Dropbox Folder</string>
+    <string name="delete_bill">Delete Bill</string>
+
+</resources>
