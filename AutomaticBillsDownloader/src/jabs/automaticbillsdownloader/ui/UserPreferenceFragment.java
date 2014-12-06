@@ -51,12 +51,12 @@ public class UserPreferenceFragment extends PreferenceFragment {
 			@Override
 			public void onSharedPreferenceChanged(
 					SharedPreferences sharedPreferences, String key) {
-				createPreferences();
+				rebuildBillPreferenceCategory();
 			}
 		};
 		
 		addPreferencesFromResource(R.xml.preferences);
-		createPreferences();
+		rebuildBillPreferenceCategory();
 		
 		dropboxAccountPref = getPreferenceManager().findPreference(
 				DROPBOX_ACCOUNT_PREFERENCE_KEY);
@@ -171,7 +171,7 @@ public class UserPreferenceFragment extends PreferenceFragment {
 		}
 	}
 	
-	private void createPreferences() {
+	private void rebuildBillPreferenceCategory() {
 		
 		PreferenceCategory billCategory = (PreferenceCategory) findPreference("billPreferenceCategory");
 		billCategory.removeAll();
