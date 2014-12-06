@@ -88,6 +88,8 @@ public class UserPreferenceFragment extends PreferenceFragment {
 				return scheduleBillDownloads(time);
 			}
 		});
+		
+		scheduleBillDownloads(timePref.getSummary().toString());
 	}
 	
 	private boolean scheduleBillDownloads(String time) {
