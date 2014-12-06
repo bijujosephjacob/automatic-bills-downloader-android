@@ -41,11 +41,6 @@ public class UserPreferenceFragment extends PreferenceFragment {
 		super.onCreate(savedInstanceState);
 		
 		final Activity activity = getActivity();
-		final AlarmManager alarmManager = (AlarmManager) activity
-				.getSystemService(Context.ALARM_SERVICE);
-		final Intent intent = new Intent(activity, AlarmReceiver.class);
-		final PendingIntent pendingIntent = PendingIntent.getBroadcast(
-				activity, 0, intent, 0);
 		
 		preferenceChangeListener = new OnSharedPreferenceChangeListener() {
 			@Override
@@ -89,37 +84,51 @@ public class UserPreferenceFragment extends PreferenceFragment {
 			@Override
 			public boolean onPreferenceChange(Preference preference,
 					Object newValue) {
-				Toast.makeText(activity, "schedule daily @ " + newValue,
-						Toast.LENGTH_SHORT).show();
-
 				String time = (String) newValue;
-				if (time == null) {
-					Toast.makeText(activity, "invalid time selected",
-							Toast.LENGTH_LONG).show();
-					return false;
-				}
-				int hour = TimePreference.getHour(time);
-				int minute = TimePreference.getMinute(time);
-				
-				Calendar scheduledTime = Calendar.getInstance();
-				scheduledTime.set(Calendar.HOUR_OF_DAY, hour);
-				scheduledTime.set(Calendar.MINUTE, minute);
-				scheduledTime.set(Calendar.SECOND, 0);
-				scheduledTime.set(Calendar.MILLISECOND, 0);
-				
-				if(scheduledTime.before(Calendar.getInstance())) {
-					scheduledTime.add(Calendar.DATE, 1);
-				}
-
-				alarmManager.cancel(pendingIntent);
-				alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
-						scheduledTime.getTimeInMillis(),
-						AlarmManager.INTERVAL_DAY, pendingIntent);
-				Toast.makeText(activity.getApplicationContext(),
-						"Alarm Set", Toast.LENGTH_SHORT).show();
-				return true;
+				return scheduleBillDownloads(time);
 			}
 		});
+	}
+	
+	private boolean scheduleBillDownloads(String time) {
+		final Activity activity = getActivity();
+		
+		if (time == null) {
+			Toast.makeText(activity, "invalid time selected",
+					Toast.LENGTH_LONG).show();
+			return false;
+		}
+		
+		final AlarmManager alarmManager = (AlarmManager) activity
+				.getSystemService(Context.ALARM_SERVICE);
+		final Intent intent = new Intent(activity, AlarmReceiver.class);
+		final PendingIntent pendingIntent = PendingIntent.getBroadcast(
+				activity, 0, intent, 0);
+		
+		Toast.makeText(activity, "schedule daily @ " + time,
+				Toast.LENGTH_SHORT).show();
+		
+		int hour = TimePreference.getHour(time);
+		int minute = TimePreference.getMinute(time);
+		
+		Calendar scheduledTime = Calendar.getInstance();
+		scheduledTime.set(Calendar.HOUR_OF_DAY, hour);
+		scheduledTime.set(Calendar.MINUTE, minute);
+		scheduledTime.set(Calendar.SECOND, 0);
+		scheduledTime.set(Calendar.MILLISECOND, 0);
+		
+		if(scheduledTime.before(Calendar.getInstance())) {
+			scheduledTime.add(Calendar.DATE, 1);
+		}
+
+		alarmManager.cancel(pendingIntent);
+		alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
+				scheduledTime.getTimeInMillis(),
+				AlarmManager.INTERVAL_DAY, pendingIntent);
+		Toast.makeText(activity.getApplicationContext(),
+				"Alarm Set", Toast.LENGTH_SHORT).show();
+		
+		return true;
 	}
 	
 	@Override
